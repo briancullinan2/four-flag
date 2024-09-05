@@ -2987,3 +2987,21 @@ void CG_DrawActive( stereoFrame_t stereoView ) {
 	// draw status bar and other floating elements
  	CG_Draw2D( stereoView );
 }
+
+
+#if 0
+	refEntity_t main;
+	memset(&main, 0, sizeof(main));
+	cg.refdef.rdflags = RDF_NOWORLDMODEL;
+
+	main.hModel = trap_R_RegisterModel("*0");
+	//CG_Printf("%i\n", main.hModel);
+	//VectorCopy( cg.refdef.vieworg, main.origin);
+	AnglesToAxis( vec3_origin, main.axis );
+	//main.renderfx = RF_FIRST_PERSON;
+	main.reType = RT_MODEL;
+	main.renderfx |= RF_LIGHTING_ORIGIN;
+	//main.renderfx = RF_SHADOW_PLANE;
+
+	trap_R_AddRefEntityToScene( &main );
+#endif
