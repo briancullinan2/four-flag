@@ -160,6 +160,9 @@ static void CG_General( const centity_t *cent ) {
 	VectorCopy( cent->lerpOrigin, ent.oldorigin);
 
 	ent.hModel = cgs.gameModels[cent->currentState.modelindex];
+	if(!ent.hModel && cent->currentState.modelindex2) {
+		ent.hModel = cgs.gameModels[cent->currentState.modelindex2];
+	}
   if(!ent.hModel) {
     return;
   }
@@ -168,6 +171,7 @@ static void CG_General( const centity_t *cent ) {
 	if (cent->currentState.number == cg.snap->ps.clientNum) {
 		ent.renderfx |= RF_THIRD_PERSON;	// only draw from mirrors
 	}
+	ent.renderfx |= RF_LIGHTING_ORIGIN;
 
 	// convert angles to axis
 	AnglesToAxis( cent->lerpAngles, ent.axis );
